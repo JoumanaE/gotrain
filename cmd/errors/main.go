@@ -25,7 +25,7 @@ func main() {
 
 		// TODO: Check for problems - Panic at first we will modify this.
 		if err != nil {
-			log.Printf("Url %s returns error:%s", v, err.Error())
+			log.Printf("Url %s returns error:%s", v, err)
 			panic(err)
 			// continue
 		}
@@ -43,10 +43,14 @@ func main() {
 		// Defer statements push to the stack ans scheduled to execute after the function completes.
 		defer resp.Body.Close()
 
-		u, _ := url.Parse(v)
+		u, _ := url.Parse(v) //No Error check
+
+		if err != nil {
+			log.Printf("there is an issue with the parsing")
+		}
 
 		// Dynamically create a file name to write to
-		fileName := fmt.Sprintf("result-%v.txt", u.Host)
+		fileName := fmt.Sprintf("result-%v.txt", u.Host) // Is this host empty
 
 		// Use the os lib to open a write handle to the file.  The call will Create
 		// it if it doesn't exist or overwrite it if it does.
@@ -63,7 +67,8 @@ func main() {
 		// Finally copy the results of our http response to the file.
 		// os.Copy can handle very ver large files cause it copies the
 		// file in sections.
-		io.Copy(file, resp.Body)
+
+		io.Copy(file, resp.Body) // This can return an error and needs to be checked
 
 	}
 

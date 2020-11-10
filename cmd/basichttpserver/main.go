@@ -32,7 +32,7 @@ func main() {
 	// If we wanted we could listen on 2 or more ports at the same time.
 	// go http.ListenAndServe(":8081", nil)
 
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8080", nil) // could return an error
 }
 
 // This function handles http request for the json file
@@ -56,7 +56,9 @@ func asciiHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	result, err := data.MarshalJSON()
 	if err != nil {
-		w.Write([]byte(err.Error()))
+		http.Error(w, "Internal Server", http.StatusInternalServerError)
+		log.Println(err.Error())
+		// w.Write([]byte(err.Error()))
 		return
 	}
 

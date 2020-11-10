@@ -5,7 +5,8 @@ import (
 )
 
 func main() {
-	fmt.Println("Hello World")
+	text := fmt.Sprintf("%s %s", "hello,", "world")
+	fmt.Println(text)
 }
 
 // Excercise 5 Minute:

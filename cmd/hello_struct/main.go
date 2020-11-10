@@ -12,8 +12,8 @@ type message struct {
 }
 
 // Add a method to your new struct -
-func (m *message) UpperCaseIt() string {
-	return strings.ToUpper(*m.text)
+func (m *message) LowerCaseIt() string {
+	return strings.ToLower(*m.text)
 }
 
 func main() {
@@ -21,13 +21,13 @@ func main() {
 	var msg message
 
 	// Set the commandline value to the property of our struct
-	msg.text = flag.String("message", "gopher", "Say hi to!")
+	msg.text = flag.String("message", "GOPHER", "Say hi to!")
 
 	// Call the method that parses the items at the commandline
 	flag.Parse()
 
 	// Print it to the screen
-	fmt.Printf("Hello %s!\n", msg.UpperCaseIt())
+	fmt.Printf("Hello %s!\n", msg.LowerCaseIt())
 }
 
 // Pointers in go, what are they and how do we use them?

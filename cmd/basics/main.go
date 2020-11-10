@@ -57,8 +57,8 @@ func main() {
 	// Maps
 	// Notice the map order is random
 	mymap := make(map[int]string)
-	for c := 0; c < 100; c++ {
-		mymap[c] = string(c)
+	for c := 0; c < len(mymap); c++ {
+		fmt.Printf("%d -%s\n", c, mymap[c])
 	}
 
 	// Let's run range over our map to get the values
